@@ -1222,7 +1222,8 @@ class ThreadsAPI:
 
         try:
             res = await self._private_post(url=post_url, headers=headers,data=payload)
-
+            res['media']['caption']['user']['fbid_v2'] = str(res['media']['caption']['user']['fbid_v2'])
+            res['media']['user']['fbid_v2'] = str(res['media']['user']['fbid_v2'])
             if 'status' in res and res['status'] == "ok":
                 return PostResponse(**res)
             else:
